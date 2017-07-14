@@ -1,0 +1,274 @@
+" vim: fdm=marker ts=2 sts=2 sw=2 fdl=0
+
+"==================================================
+" Dein: setup
+"==================================================
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Load dein.
+let $CACHE = expand('~/.dotfile/bundle')
+let s:dein_dir = finddir('dein.vim', '.;')
+if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
+  if s:dein_dir == '' && &runtimepath !~ '/dein.vim'
+    let s:dein_dir = expand('$CACHE/dein')
+          \. '/repos/github.com/Shougo/dein.vim'
+    if !isdirectory(s:dein_dir)
+      execute '!git clone https://github.com/Shougo/dein.vim' s:dein_dir
+    endif
+  endif
+  execute 'set runtimepath^=' . substitute(
+        \ fnamemodify(s:dein_dir, ':p') , '/$', '', '')
+endif
+call dein#begin(expand('$CACHE/dein'), expand('<sfile>'))
+
+"==================================================
+" Options:
+"==================================================
+syntax on
+filetype plugin indent on
+let mapleader = ","
+let g:mapleader = ","
+set mouse=r                                         "enable mouse
+set ttyfast                                         "assume fast terminal connection
+set lazyredraw
+set viewoptions=folds,options,cursor,unix,slash     "unix/windows compatibility
+set encoding=utf-8                                  "set encoding for text
+set fileencodings=utf-8,gbk                         "file encoding
+set clipboard=unnamed
+set showcmd
+set completeopt-=preview
+set backspace=indent,eol,start                      "allow backspacing everything in insert mode
+set autoindent                                      "automatically indent to match adjacent lines
+set expandtab                                       "spaces instead of tabs
+set smarttab                                        "use shiftwidth to enter tabs
+set tabstop=2                                       "number of spaces per tab for display
+set softtabstop=2                                   "number of spaces per tab in insert mode
+set shiftwidth=2                                    "number of spaces when indenting
+set shiftround                                      "round indent to multiple of 'shiftwidth'
+set linebreak                                       "wrap long lines
+set display+=lastline                               "as much as possible of the last line will be displayed
+set wildmenu                                        "show list for autocomplete
+set wildmode=list:longest                           "when more than one match, list all matches and complete first match
+set wildignorecase                                  "case is ignored when completing file names and directories
+set textwidth=0                                     "set text width
+set hlsearch                                        "highlight searches
+set incsearch                                       "incremental searching
+set ignorecase                                      "ignore case for searching
+set smartcase                                       "do case-sensitive if there's a capital letter
+set noswapfile                                      "diable swap files
+set noerrorbells                                    "disable bell
+set visualbell                                      "enable visual bell and set t_vb to nothing
+set t_vb=                                           "disable bell
+
+" ui options
+set background=dark
+set showmatch                                       "automatically highlight matching braces/brackets/etc.
+set matchtime=2                                     "tens of a second to show matching parentheses
+set number                                          "precede each line with its line number
+set laststatus=2                                    "always shows the status line
+set noshowmode
+set foldenable                                      "enable folds by default
+set foldlevelstart=99                               "open all folds by default
+
+"" persistant undo
+set undofile
+let &undodir = expand("~/.cache/vim/undo")
+if !isdirectory(&undodir)
+  call mkdir(expand(&undodir), 'p')
+endif
+
+"==================================================
+" Plugins:
+"==================================================
+
+" the plugin manager itself
+call dein#add('Shougo/dein.vim')
+
+" solarized colorscheme
+call dein#add('lifepillar/vim-solarized8', {
+  \ 'hook_add': 'colorscheme solarized8_dark'
+  \ })
+
+" A solid language pack for Vim.
+call dein#add('sheerun/vim-polyglot')
+
+" incrementally highlights ALL pattern matches unlike default 'incsearch'.
+call dein#add('haya14busa/incsearch.vim')
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+  nnoremap <Esc><Esc> :<C-u>nohlsearch<CR>
+
+" comment stuff out
+call dein#add('tpope/vim-commentary')
+
+call dein#add('Shougo/neocomplete.vim', {
+      \ 'if': "has('lua')",
+      \ 'on_event': 'InsertEnter',
+      \ 'hook_source': 'let g:neocomplete#enable_at_startup = 1'
+      \ })
+
+" lean & mean status/tabline for vim that's light as air
+call dein#add('bling/vim-airline')
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#left_sep = ' '
+  let g:airline#extensions#tabline#left_alt_sep = '¦'
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  nmap <leader>1 <Plug>AirlineSelectTab1
+  nmap <leader>2 <Plug>AirlineSelectTab2
+  nmap <leader>3 <Plug>AirlineSelectTab3
+  nmap <leader>4 <Plug>AirlineSelectTab4
+  nmap <leader>5 <Plug>AirlineSelectTab5
+  nmap <leader>6 <Plug>AirlineSelectTab6
+  nmap <leader>7 <Plug>AirlineSelectTab7
+  nmap <leader>8 <Plug>AirlineSelectTab8
+  nmap <leader>9 <Plug>AirlineSelectTab9
+
+" Unite and create user interfaces
+call dein#add('Shougo/unite.vim')
+call dein#add('thinca/vim-unite-history')
+call dein#add('Shougo/neomru.vim')
+call dein#add('Shougo/unite-outline')
+  let g:unite_enable_auto_select = 0
+  let g:unite_source_rec_max_cache_files=100
+  call unite#custom#profile('default', 'context', {
+        \ 'start_insert' : 1
+        \ })
+  call unite#custom#source(
+        \ 'buffer,file/async,file_rec,file_rec/async,file_rec/git', 'matchers',
+        \ ['converter_relative_word', 'matcher_fuzzy'])
+  call unite#custom#source(
+        \ 'file_mru', 'matchers',
+        \ ['matcher_project_files', 'matcher_fuzzy',
+        \  'matcher_hide_hidden_files', 'matcher_hide_current_file'])
+  call unite#custom#source(
+        \ 'file_rec,file_rec/async,file_rec/git,file_mru', 'converters',
+        \ ['converter_uniq_word'])
+  call unite#custom#source(
+        \ 'buffer', 'converters',
+        \ ['converter_uniq_word','converter_word_abbr'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+    \ '-i --vimgrep --hidden --ignore ' .
+    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+
+  " Source rec.
+  let s:source_file_rec = {
+      \ 'name' : 'file_rec',
+      \ 'description' : 'candidates from directory by recursive',
+      \ 'hooks' : {},
+      \ 'default_kind' : 'file',
+      \ 'max_candidates' : 50,
+      \ 'ignore_globs' : [
+      \         '.', '*~', '*.o', '*.exe', '*.bak',
+      \         'DS_Store', '*.pyc', '*.sw[po]', '*.class',
+      \         '.hg/**', '.git/**', '.bzr/**', '.svn/**',
+      \         'tags', 'tags-*'
+      \ ],
+      \ 'matchers' : [ 'converter_relative_word',
+      \                'matcher_default', 'matcher_hide_hidden_files' ],
+      \ }
+
+  call unite#custom#source('file_rec,file_rec/async', 'matchers',
+      \ ['converter_relative_word', 'matcher_project_ignore_files', 'matcher_default'])
+
+  function! s:unite_settings() abort
+    nmap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <esc> <plug>(unite_exit)
+    imap <buffer> <C-j> <Plug>(unite_select_next_line)
+    imap <buffer> <C-k> <Plug>(unite_select_previous_line)
+  endfunction
+  autocmd FileType unite call s:unite_settings()
+
+  nmap <space> [unite]
+  nnoremap [unite] <nop>
+  nnoremap <silent> [unite]r :<C-u>Unite -toggle -auto-resize -buffer-name=files    file_rec/async<cr><c-u>
+  nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files    file<cr><c-u>
+  nnoremap <silent> [unite]b :<C-u>Unite -toggle -auto-resize -buffer-name=buffers  buffer file_mru<cr>
+  nnoremap <silent> [unite]l :<C-u>Unite -toggle -auto-resize -buffer-name=line     line<cr>
+  nnoremap <silent> [unite]/ :<C-u>Unite -toggle -auto-resize -buffer-name=search   grep:.<cr>
+  nnoremap <silent> [unite]o :<C-u>Unite -toggle -auto-resize -buffer-name=outline  outline<cr>
+  nnoremap <silent> [unite]c :<C-u>Unite -default-action=execute -buffer-name=commands  history/command<CR>
+
+"==================================================
+ " Mappings:
+"==================================================
+if exists(':tnoremap')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
+" copy and paste globally
+vnoremap    "+Y  :!xclip -f -sel clip<cr>
+noremap     "+P :r!xclip -o -sel clip<cr>
+
+" [Easy indent in visual mode]
+xnoremap    <   <gv
+xnoremap    >   >gv
+
+" [Up down move]
+nnoremap    j       gj
+nnoremap    k       gk
+nnoremap    gj      j
+nnoremap    gk      k
+
+" [Misc]
+nnoremap    J       gJ
+nnoremap    gJ      J
+nnoremap    -       _
+nnoremap    _       -
+
+inoremap {<CR> {<CR>}<ESC>O
+
+" [Spell checking]"
+map <leader>se :setlocal spell spelllang=en_us<cr>
+map <leader>sn :setlocal nospell<cr>
+
+"==================================================
+" Autocmd:
+"==================================================
+
+" go back to previous position of cursor if any
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$") |
+  \  exe 'normal! g`"zvzz' |
+  \ endif
+
+autocmd FileType markdown setlocal nolist
+autocmd FileType vim setlocal fdm=indent keywordprg=:help
+autocmd FileType python set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
+autocmd FilterWritePre * if &diff | setlocal wrap< | endif
+
+" file types
+autocmd BufRead,BufNewFile SConstruct   set filetype=python
+autocmd BufRead,BufNewFile SConscript   set filetype=python
+autocmd BufRead,BufNewFile *.cu,*.cuda  set filetype=cpp
+autocmd BufRead,BufNewFile *.maxj       set filetype=java
+autocmd BufRead,BufNewFile gitconfig    set filetype=gitconfig
+
+"==================================================
+" LocalPlugins: load local plugins
+"==================================================
+if filereadable(expand('$DOTFILEDIR/vim/local-plugins.vim'))
+  execute 'source' expand('$DOTFILEDIR/vim/local-plugins.vim')
+endif
+
+"==================================================
+" DeinEnd: install & remove & end
+"==================================================
+if dein#check_install()
+  call dein#install()
+endif
+
+" remove unused plugins
+" call map(dein#check_clean(), "delete(v:val, 'rf')")
+
+call dein#end()
+call dein#save_state()
