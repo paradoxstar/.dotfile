@@ -138,7 +138,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '¦'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap ll1 <Plug>AirlineSelectTab1
+nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
 nmap <leader>4 <Plug>AirlineSelectTab4
@@ -274,6 +274,24 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " s/v 分屏打开文件
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
+"====================================PART  END =================================
+
+
+"=================================================
+"	taglist plugin
+"=================================================
+Plugin 'taglist.vim'
+map <F8> :TlistToggle<CR>
+
+"-- Taglist setting --
+let Tlist_Ctags_Cmd='ctags' "因为我们放在环境变量里，所以可以直接执行
+let Tlist_Use_Right_Window=0 "让窗口显示在右边，0的话就是显示在左边
+let Tlist_Show_One_File=0 "让taglist可以同时展示多个文件的函数列表
+let Tlist_File_Fold_Auto_Close=1 "非当前文件，函数列表折叠隐藏
+let Tlist_Exit_OnlyWindow=1 "当taglist是最后一个分割窗口时，自动推出vim
+"是否一直处理tags.1:处理;0:不处理
+let Tlist_Process_File_Always=1 "实时更新tags
+let Tlist_Inc_Winwidth=0
 "====================================PART  END =================================
 
 
