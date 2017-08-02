@@ -35,8 +35,8 @@
 [apply]
   whitespace = fix
 [branch]
-  autosetupmerge = true
-  autosetuprebase = always
+  #autosetupmerge = true
+  #autosetuprebase = always
 [core]
   whitespace = trailing-space,space-before-tab
   autocrlf = false
@@ -56,6 +56,6 @@
 [merge]
 	tool = vimdiff
 [pull]
-	rebase = true
+  # rebase = true
 [push]
 	default = current
