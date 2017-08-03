@@ -15,7 +15,7 @@ fi
 export LANG=en_US.UTF-8
 export EDITOR_CH="$VIM -u $HOME/.dotfile/vim/vimrc"
 export EDITOR_HK="$VIM -u $HOME/.dotfile/vim/vimrc_yhk"
-export GIT_EDITOR=${EDITOR}
+export GIT_EDITOR=${EDITOR_HK}
 export TERM="xterm-256color"
 export PAGER="less"
 export DOTFILEDIR=${HOME}/.dotfile
