@@ -73,3 +73,4 @@ antigen apply
 alias ls='ls -a --color=tty'
 alias ll='ls -l'
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+export PATH=/Users/yhk/bin:$PATH

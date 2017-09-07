@@ -1,0 +1,21 @@
+#! /bin/sh
+#
+# gcc_env.sh
+#
+# Copyright © 2017 Hongkun Yu <staryhk@gmail.com>
+#
+# @AUTHOR:      Hongkun Yu
+# @MAIL:        staryhk@gmail.com
+# @VERSION:     2017-01-21
+#
+
+
+#gcc
+export GCC48_ROOT=/usr/local/Cellar/gcc@4.8/4.8.5
+export PATH=$GCC48_ROOT/bin:$PATH
+export LD_LIBRARY_PATH=$GCC48_ROOT/lib:$LD_LIBRARY_PATH
+
+#mpicc
+export MPI_ROOT=/usr/local/Cellar/mpich-gcc/4.8
+export PATH=$MPI_ROOT/bin:$PATH
+export LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
