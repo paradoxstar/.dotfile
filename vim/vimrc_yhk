@@ -84,7 +84,7 @@ set viminfo^=%
 " set mouse-=a                "鼠标暂不启用, 键盘党....
 " set mouse=a                 " Automatically enable mouse usage
 " set mousehide               " Hide the mouse cursor while typing
-set mouse=r
+set mouse=a
 
 "设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制:
 "好处：误删什么的，如果以前屏幕打开，可以找回
@@ -229,9 +229,9 @@ endfun
 
 "#################################  tab #######################################
 
-set tabstop=4     " 设置Tab键的宽度        [等同的空格个数]
-set shiftwidth=4  " 每一次缩进对应的空格数
-set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
+set tabstop=2     " 设置Tab键的宽度        [等同的空格个数]
+set shiftwidth=2  " 每一次缩进对应的空格数
+set softtabstop=2 " 按退格键时可以一次删掉 4 个空格
 set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
 set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
@@ -407,6 +407,9 @@ noremap L $
 " ex mode commands made easy 用于快速进入命令行
 nnoremap ; :
 
+"使用tab键来代替%进行匹配跳转
+nmap <tab> %
+vmap <tab> %
 "===============================================================================================================================
 
 

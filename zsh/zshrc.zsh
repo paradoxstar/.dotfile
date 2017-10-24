@@ -24,7 +24,7 @@ export INSTALL_ROOT=${HOME}/softs/install
 # aliases
 alias ec=$EDITOR_CH
 alias eh=$EDITOR_HK
-alias ssh='ssh -Y'
+#alias ssh='ssh -Y'
 alias vim='vim -u $DOTFILEDIR/vim/tiny-vimrc.vim'
 
 # make ~/.antigen inside dotfile# {{{
