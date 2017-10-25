@@ -14,8 +14,8 @@ fi
 [[ -f ~/.linuxbrew/bin/vim ]] && VIM=~/.linuxbrew/bin/vim  || VIM=vim
 export LANG=en_US.UTF-8
 export EDITOR_CH="$VIM -u $HOME/.dotfile/vim/vimrc"
-export EDITOR_HK="$VIM -u $HOME/.dotfile/vim/vimrc_yhk"
-export GIT_EDITOR=${EDITOR_HK}
+export EDITOR="$VIM -u $HOME/.dotfile/vim/vimrc_yhk"
+export GIT_EDITOR=${EDITOR}
 export TERM="xterm-256color"
 export PAGER="less"
 export DOTFILEDIR=${HOME}/.dotfile
@@ -23,18 +23,18 @@ export INSTALL_ROOT=${HOME}/softs/install
 
 # aliases
 alias ec=$EDITOR_CH
-alias eh=$EDITOR_HK
+alias e=$EDITOR
 #alias ssh='ssh -Y'
 alias vim='vim -u $DOTFILEDIR/vim/tiny-vimrc.vim'
 
 # make ~/.antigen inside dotfile# {{{
-if ! readlink ${HOME}/.antigen | grep 'dotfile/bundle' -q; then
+if ! readlink ${HOME}/.antigen | grep 'dotfile/bundle/zsh_plugins' -q; then
   echo "${HOME}/.antigen is not inside dotfile"
-  echo "create a directory (if not exist) in ${DOTFILEDIR} to save zsh plugins"
-  mkdir -p ${DOTFILEDIR}/bundle/antigen/.antigen
+  echo "create a directory (if not exist) in ${DOTFILEDIR}/bundle/zsh_plugins to save zsh plugins"
+  mkdir -p ${DOTFILEDIR}/bundle/zsh_plugins
 
-  echo "linking ${HOME}/.antigen to ${DOTFILEDIR}/bundle/antigen/.antigen"
-  rm -rf ${HOME}/.antigen && ln -s ${DOTFILEDIR}/bundle/antigen/.antigen ${HOME}/.antigen || exit
+  echo "linking ${HOME}/.antigen to ${DOTFILEDIR}/bundle/zsh_plugins"
+  rm -rf ${HOME}/.antigen && ln -s ${DOTFILEDIR}/bundle/zsh_plugins ${HOME}/.antigen || exit
 fi
 # }}}
 # source config before antigen# {{{
@@ -49,18 +49,20 @@ export _ANTIGEN_CACHE_ENABLED=${_ANTIGEN_CACHE_ENABLED:-false}
 source ${DOTFILEDIR}/bundle/antigen/antigen.zsh
 
 antigen use oh-my-zsh # use oh-my-zsh as library
+#backup bundles {{{
+#mafredri/zsh-async
+#docker
+#}}}
 antigen bundles << EOBUNDLES
-  mafredri/zsh-async
-  zsh-users/zsh-completions
   git
-  docker
   fasd
   pip
-  joel-porquet/zsh-dircolors-solarized
-  history-substring-search
-  derekdreery/zsh-ag
-  zsh-users/zsh-syntax-highlighting
   colored-man-pages
+  zsh-users/zsh-completions
+  zsh-users/zsh-syntax-highlighting
+  derekdreery/zsh-ag
+  history-substring-search
+  joel-porquet/zsh-dircolors-solarized
   ${DOTFILEDIR}/zsh/plugin
 EOBUNDLES
 

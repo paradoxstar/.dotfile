@@ -30,11 +30,6 @@ done
 # install Menlo fonts
 curl -L https://github.com/hbin/top-programming-fonts/raw/master/install.sh | bash
 
-# link configurations to $HOME
-#for f in ${DOTFILEDIR}/config/.[!.]*; do
-#  lnk=${HOME}/${f##*/}
-#  rm -f $lnk; ln -s $f $lnk
-#  echo "linking $lnk ==> $f"
-#done
+ 
 
 echo "installtion complete"
