@@ -1,0 +1,14 @@
+#! /bin/sh
+#
+# arc.sh
+#
+# Copyright © 2017 Hongkun Yu <staryhk@gmail.com>
+#
+# @AUTHOR:      Hongkun Yu
+# @MAIL:        staryhk@gmail.com
+# @VERSION:     2018-09-05
+#
+
+
+#arcanist
+export PATH=/Users/yhk/opt/arcanist/bin/:$PATH

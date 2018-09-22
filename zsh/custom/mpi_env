@@ -11,9 +11,9 @@
 
 
 #gcc
-export GCC48_ROOT=/usr/local/Cellar/gcc@4.8/4.8.5
-export PATH=$GCC48_ROOT/bin:$PATH
-export LD_LIBRARY_PATH=$GCC48_ROOT/lib:$LD_LIBRARY_PATH
+export GCC49_ROOT=/usr/local/Cellar/gcc@4.9/4.9.4_1
+export PATH=$GCC49_ROOT/bin:$PATH
+export LD_LIBRARY_PATH=$GCC49_ROOT/lib:$LD_LIBRARY_PATH
 
 #mpicc
 export MPI_ROOT=/usr/local/Cellar/mpich-gcc/4.8
