@@ -1,3 +1,2 @@
-bin/
+bin/*.json
 bundle/
-zsh/custom/palias.zsh
