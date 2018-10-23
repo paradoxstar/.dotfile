@@ -1,10 +1,15 @@
 # vim: fdm=marker fdl=0 ft=zsh
 # keep this file as simple & clean as possible
+
+# set the actually home path
+# export ACTHOME=$HOME/yhk
+export ACTHOME=$HOME
+
 # setup PATH for linuxbrew/homebrew # {{{
 if [[ "$OSTYPE" == "linux-gnu" ]]; then # only set for Linux
-  export PATH="$HOME/.linuxbrew/bin":"$HOME/.linuxbrew/sbin":$PATH
-  export MANPATH="$HOME/.linuxbrew/share/man":$MANPATH
-  export INFOPATH="$HOME/.linuxbrew/share/info":$INFOPATH
+  export PATH="$ACTHOME/.linuxbrew/bin":"$ACTHOME/.linuxbrew/sbin":$PATH
+  export MANPATH="$ACTHOME/.linuxbrew/share/man":$MANPATH
+  export INFOPATH="$ACTHOME/.linuxbrew/share/info":$INFOPATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then # only set for MAC
   export PATH="$(brew --prefix coreutils)/libexec/gnubin":$PATH
 fi
@@ -13,13 +18,13 @@ fi
 # variables
 [[ -f ~/.linuxbrew/bin/vim ]] && VIM=~/.linuxbrew/bin/vim  || VIM=vim
 export LANG=en_US.UTF-8
-export EDITOR_CH="$VIM -u $HOME/.dotfile/vim/vimrc"
-export EDITOR="$VIM -u $HOME/.dotfile/vim/vimrc_yhk"
+export EDITOR_CH="$VIM -u $ACTHOME/.dotfile/vim/vimrc"
+export EDITOR="$VIM -u $ACTHOME/.dotfile/vim/vimrc_yhk"
 export GIT_EDITOR=${EDITOR}
 export TERM="xterm-256color"
 export PAGER="less"
-export DOTFILEDIR=${HOME}/.dotfile
-export INSTALL_ROOT=${HOME}/softs/install
+export DOTFILEDIR=${ACTHOME}/.dotfile
+export INSTALL_ROOT=${ACTHOME}/softs/install
 
 # aliases
 alias ec=$EDITOR_CH
@@ -28,13 +33,13 @@ alias e=$EDITOR
 alias vim='vim -u $DOTFILEDIR/vim/tiny-vimrc.vim'
 
 # make ~/.antigen inside dotfile# {{{
-if ! readlink ${HOME}/.antigen | grep 'dotfile/bundle/zsh_plugins' -q; then
-  echo "${HOME}/.antigen is not inside dotfile"
+if ! readlink ${ACTHOME}/.antigen | grep 'dotfile/bundle/zsh_plugins' -q; then
+  echo "${ACTHOME}/.antigen is not inside dotfile"
   echo "create a directory (if not exist) in ${DOTFILEDIR}/bundle/zsh_plugins to save zsh plugins"
   mkdir -p ${DOTFILEDIR}/bundle/zsh_plugins
 
-  echo "linking ${HOME}/.antigen to ${DOTFILEDIR}/bundle/zsh_plugins"
-  rm -rf ${HOME}/.antigen && ln -s ${DOTFILEDIR}/bundle/zsh_plugins ${HOME}/.antigen || exit
+  echo "linking ${ACTHOME}/.antigen to ${DOTFILEDIR}/bundle/zsh_plugins"
+  rm -rf ${ACTHOME}/.antigen && ln -s ${DOTFILEDIR}/bundle/zsh_plugins ${ACTHOME}/.antigen || exit
 fi
 # }}}
 # source config before antigen# {{{
