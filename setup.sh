@@ -13,6 +13,8 @@ if [[ -z $DOTFILEDIR ]]; then
   exit 1
 fi
 
+echo "DOTFILEDIR is set to $DOTFILEDIR"
+
 mkdir -p ${DOTFILEDIR}/bundle
 
 # clone a repo into ${DOTFILEDIR}/bundle if it does not exist. Otherwise, update it.

@@ -3,7 +3,7 @@
 
 # set the actually home path
 # export ACTHOME=$HOME/yhk
-export ACTHOME=$HOME
+export ACTHOME=$HOME/yhk
 
 # setup PATH for linuxbrew/homebrew # {{{
 if [[ "$OSTYPE" == "linux-gnu" ]]; then # only set for Linux
@@ -23,8 +23,7 @@ export EDITOR="$VIM -u $ACTHOME/.dotfile/vim/vimrc_yhk"
 export GIT_EDITOR=${EDITOR}
 export TERM="xterm-256color"
 export PAGER="less"
-export DOTFILEDIR=${ACTHOME}/.dotfile
-export INSTALL_ROOT=${ACTHOME}/softs/install
+export DOTFILEDIR=$ACTHOME/.dotfile
 
 # aliases
 alias ec=$EDITOR_CH
@@ -50,7 +49,9 @@ if ls $DOTFILEDIR/zsh/custom/ | grep -q '.zsh'; then
 fi
 # }}}
 # set true to improve performance, but need to run `antigen-reset` after any changes
-export _ANTIGEN_CACHE_ENABLED=${_ANTIGEN_CACHE_ENABLED:-false}
+export ADOTDIR=$ACTHOME/.antigen
+export _ANTIGEN_CACHE=true
+export _ANTIGEN_CACHE=${_ANTIGEN_CACHE:-false}
 source ${DOTFILEDIR}/bundle/antigen/antigen.zsh
 
 antigen use oh-my-zsh # use oh-my-zsh as library
@@ -73,7 +74,8 @@ EOBUNDLES
 
 #sindresorhus/pure
 #antigen theme evan # a skinny, topless prompt, use it if your computer is really slow
-antigen theme ys
+#antigen theme ys
+antigen theme agnoster 
 antigen apply
 
 # color different file types and file extensions
