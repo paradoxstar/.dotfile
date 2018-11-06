@@ -3,7 +3,7 @@
 
 # set the actually home path
 # export ACTHOME=$HOME/yhk
-export ACTHOME=$HOME/yhk
+export ACTHOME=$HOME
 
 # setup PATH for linuxbrew/homebrew # {{{
 if [[ "$OSTYPE" == "linux-gnu" ]]; then # only set for Linux
@@ -79,8 +79,8 @@ antigen theme agnoster
 antigen apply
 
 # color different file types and file extensions
-alias ls='ls -a --color=tty'
-alias ll='ls -l'
+alias ls='ls --color=tty'
+alias ll='ls -al'
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 export PATH=/Users/yhk/bin:$PATH
 
