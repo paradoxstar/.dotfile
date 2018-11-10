@@ -8,7 +8,7 @@ if &compatible
 endif
 
 " Load dein.
-let $CACHE = expand('~/.dotfile/bundle')
+let $CACHE = expand('$DOTFILEDIR/bundle')
 let s:dein_dir = finddir('dein.vim', '.;')
 if s:dein_dir != '' || &runtimepath !~ '/dein.vim'
   if s:dein_dir == '' && &runtimepath !~ '/dein.vim'

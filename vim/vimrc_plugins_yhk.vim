@@ -12,7 +12,7 @@ let g:mapleader = ","
 
 " set the runtime path to include Vundle and initialize
 " Load vundle.
-let $CACHE = expand('~/.dotfile/bundle')
+let $CACHE = expand('$DOTFILEDIR/bundle')
 let s:vundle_dir = finddir('Vundle.vim', '.;')
 if s:vundle_dir != '' || &runtimepath !~ '/Vundle.vim'
   if s:vundle_dir == '' && &runtimepath !~ '/Vundle.vim'
