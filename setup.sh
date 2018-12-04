@@ -5,6 +5,7 @@ set -e
 plugins="
   zsh-users/antigen
   conghui/terminal-colors
+  powerline/fonts
   bssthu/tunet_py
 "
 

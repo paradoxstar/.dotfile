@@ -345,12 +345,13 @@ nnoremap <leader>w :w<CR>
 "go F5 -> go run
 au FileType go nmap <F5> <Plug>(go-run)
 "c/c++/java/sh  按F5编译运行
-au Filetype c nmap <F5> :call CompileRunGcc()<CR>
-au Filetype c++ nmap <F5> :call CompileRunGcc()<CR>
-au Filetype java nmap <F5> :call CompileRunGcc()<CR>
-au Filetype sh nmap <F5> :call CompileRunGcc()<CR>
+au Filetype c nmap <F5> :call CompileRun()<CR>
+au Filetype c++ nmap <F5> :call CompileRun()<CR>
+au Filetype java nmap <F5> :call CompileRun()<CR>
+au Filetype sh nmap <F5> :call CompileRun()<CR>
+au Filetype tex nmap <F5> :call CompileRun()<CR>
 
-func! CompileRunGcc()
+func! CompileRun()
     exec "w"
     if &filetype == 'c'
         exec "!g++ % -o %<"
@@ -363,6 +364,9 @@ func! CompileRunGcc()
         exec "!java %<"
     elseif &filetype == 'sh'
         :!./%
+    elseif &filetype == 'tex'
+        exec "!pdflatex %" 
+        exec "!open %<.pdf" 
     endif
 endfunc
 

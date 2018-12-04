@@ -74,8 +74,8 @@ EOBUNDLES
 
 #sindresorhus/pure
 #antigen theme evan # a skinny, topless prompt, use it if your computer is really slow
-#antigen theme ys
-antigen theme agnoster 
+antigen theme ys
+#antigen theme agnoster 
 antigen apply
 
 # color different file types and file extensions
