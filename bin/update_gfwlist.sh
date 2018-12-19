@@ -30,7 +30,7 @@ check_module_installed()
   if [ $? -eq 1 ]; then
     echo "Installing gfwlist2pac."
 
-    pip install gfwlist2pac
+    pip install --user gfwlist2pac
   fi
 }
 
@@ -55,7 +55,7 @@ update_gfwlist()
     touch $USER_RULE_NAME
   fi
 
-  /usr/bin/gfwlist2pac \
+  $HOME/.local/bin/gfwlist2pac \
     --input /tmp/gfwlist.txt \
     --file gfwlist.js \
     --proxy "SOCKS5 $PROXY; SOCKS $PROXY; DIRECT" \
