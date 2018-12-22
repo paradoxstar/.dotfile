@@ -1,3 +1,14 @@
+#! /bin/sh
+#
+# install_personal.sh
+#
+# Copyright © 2017 Hongkun Yu <staryhk@gmail.com>
+#
+# @AUTHOR:      Hongkun Yu
+# @MAIL:        staryhk@gmail.com
+# @VERSION:     2018-09-05
+#
+
 export INSTALL_ROOT=$ACTHOME/opt
 export PATH=$INSTALL_ROOT/bin:$PATH
 export LIBRARY_PATH=$INSTALL_ROOT/lib64:$INSTALL_ROOT/lib:$LIBRARY_PATH
