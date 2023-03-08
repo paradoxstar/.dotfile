@@ -14,3 +14,5 @@ brew install vim --with-lua
 brew install tmux
 brew install direnv
 brew install fasd
+
+brew install anaconda    # for python env

@@ -1,6 +1,6 @@
 #/usr/bin/env zsh
 
-brew install zsh
+#brew gnu command-line
 brew install coreutils
 brew install binutils
 brew install diffutils
@@ -18,28 +18,22 @@ brew install screen
 brew install watch
 brew install wdiff --with-gettext
 brew install wget
-brew install tmux
 brew install reattach-to-user-namespace
-brew install vim 
-
 brew install bash
-brew install gpatch
 brew install m4
-brew install make
 brew install cmake
-brew install tree
-brew install ruby
-brew install brew-gem
-brew install bwm-ng
-brew install scons
-
-brew install file-formula
-brew install git
-brew install less
-brew install openssh --with-brewed-openssl
 brew install rsync
-brew install svn
-brew install unzip
 
-#brew install perl518   # must run "brew tap homebrew/versions" first!
-#brew install gdb  # gdb requires further actions to make it work. See `brew info gdb`.
+brew install ruby
+
+brew install git
+brew install scons
+brew install zsh
+brew install bwm-ng
+
+brew install vim 
+brew install tmux
+brew install direnv
+brew install fasd
+
+brew install anaconda    # for python env
