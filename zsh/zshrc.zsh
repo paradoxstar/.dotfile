@@ -2,7 +2,8 @@
 # keep this file as simple & clean as possible
 
 # set the actually home path
-# export ACTHOME=$HOME/yhk
+# for those public accounts to init personal env as: ACTHOME=$HOME/yhk
+# It should be $HOME when private account.
 export ACTHOME=$HOME
 
 # setup PATH for linuxbrew/homebrew # {{{
@@ -79,7 +80,7 @@ EOBUNDLES
 
 #sindresorhus/pure
 #antigen theme evan # a skinny, topless prompt, use it if your computer is really slow
-antigen theme ys
+antigen theme ys-yhk
 #antigen theme agnoster 
 antigen apply
 
@@ -87,7 +88,7 @@ antigen apply
 alias ls='ls --color=tty'
 alias ll='ls -al'
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-export PATH=/Users/yhk/bin:$PATH
+export PATH=$ACTHOME/opt/bin:$PATH
 
 
 # Buddha
@@ -126,20 +127,3 @@ export PATH=/Users/yhk/bin:$PATH
 ##
 ##EOT
 ##echo -ne "\033[m"
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
