@@ -51,33 +51,28 @@ YS_THEME_CONDA_PROMPT_SUFFIX=" %{$reset_color%}%"
 
 conda_prompt() {
 	[[ -n "${CONDA_DEFAULT_ENV:-}" ]] || return
-	CONDA_PYTHON_VERSION="$($CONDA_PREFIX/bin/python -V 2>&1)"
-	CONDA_PYTHON_VERSION=${PYTHON_VERSION/Python /Python}
-	CONDA_PYTHON_VERSION=${PYTHON_VERSION/ */}
+	
+	if command -v $CONDA_PREFIX/bin/python > /dev/null 2>&1; then
+		CONDA_PYTHON_VERSION="$($CONDA_PREFIX/bin/python -V 2>&1)"
+    CONDA_PYTHON_VERSION=${CONDA_PYTHON_VERSION/Python /}
+    CONDA_PYTHON_VERSION=${CONDA_PYTHON_VERSION/ */}
+	fi
+	echo "${YS_THEME_CONDA_PROMPT_PREFIX}${CONDA_DEFAULT_ENV:t}:${CONDA_PYTHON_VERSION}${YS_THEME_CONDA_PROMPT_SUFFIX}"
 
-	echo "${YS_THEME_CONDA_PROMPT_PREFIX}${CONDA_DEFAULT_ENV:t}::${CONDA_PYTHON_VERSION$}{YS_THEME_CONDA_PROMPT_SUFFIX}"
 }
 
 # Virtualenv
 local venv_info='$(virtenv_prompt)'
 YS_THEME_VIRTUALENV_PROMPT_PREFIX=" %{$fg[green]%}"
 YS_THEME_VIRTUALENV_PROMPT_SUFFIX=" %{$reset_color%}%"
-#VIRTUALENV_python_version_prompt_info() {
-#  if command -v python > /dev/null 2>&1; then
-#    PYTHON_VERSION="$(python -V 2>&1)"
-#    PYTHON_VERSION=${PYTHON_VERSION/Python /Python}
-#    PYTHON_VERSION=${PYTHON_VERSION/ */}
-#    VIRTUAL_ENV_NAME=''
-#    if [ -n "$VIRTUAL_ENV" ]; then
-#      VIRTUAL_ENV_NAME="$(basename $VIRTUAL_ENV)::"
-#    fi
-#    echo -n " %{$fg[yellow]%}(${VIRTUAL_ENV_NAME}${PYTHON_VERSION})%{$reset_color%}"
-#  fi
-#}
-
 virtenv_prompt() {
 	[[ -n "${VIRTUAL_ENV:-}" ]] || return
-	echo "${YS_THEME_VIRTUALENV_PROMPT_PREFIX}${VIRTUAL_ENV:t}${YS_THEME_VIRTUALENV_PROMPT_SUFFIX}"
+	if command -v python > /dev/null 2>&1; then
+		VIRTUAL_ENV_PYTHON_VERSION="$(python -V 2>&1)"
+    VIRTUAL_ENV_PYTHON_VERSION=${VIRTUAL_ENV_PYTHON_VERSION/Python /}
+    VIRTUAL_ENV_PYTHON_VERSION=${VIRTUAL_ENV_PYTHON_VERSION/ */}
+	fi
+	echo "${YS_THEME_VIRTUALENV_PROMPT_PREFIX}${VIRTUAL_ENV:t}:${VIRTUAL_ENV_PYTHON_VERSION}${YS_THEME_VIRTUALENV_PROMPT_SUFFIX}"
 }
 
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
@@ -104,5 +99,5 @@ ${svn_info}\
 ${venv_info}\
 ${conda_info}\
  \
-[%*] $exit_code
+[%*] $exit_code 
 %{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
