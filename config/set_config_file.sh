@@ -9,7 +9,6 @@
 # @VERSION:     2023-02-27
 #
 
-ln -s $DOTFILEDIR/config/condarc $HOME/.condarc
-ln -s $DOTFILEDIR/config/tmux.conf $HOME/.tmux.conf
-ln -s $DOTFILEDIR/config/gitconfig HOME/.gitconfig
+ln -s $DOTFILEDIR/config/condarc $ACTHOME/.condarc
+ln -s $DOTFILEDIR/config/gitconfig $ACTHOME/.gitconfig
 

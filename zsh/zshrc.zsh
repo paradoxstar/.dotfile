@@ -36,6 +36,7 @@ alias ec=$EDITOR_CH
 alias e=$EDITOR
 #alias ssh='ssh -Y'
 alias vim='vim -u $DOTFILEDIR/vim/tiny-vimrc.vim'
+alias tmux='tmux -f $DOTFILEDIR/config/tmux.conf'
 
 # make ~/.antigen inside dotfile# {{{
 if ! readlink ${ACTHOME}/.antigen | grep 'dotfile/bundle/zsh_plugins' -q; then
