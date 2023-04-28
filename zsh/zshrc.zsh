@@ -7,15 +7,11 @@
 export ACTHOME=$HOME
 
 # setup PATH for linuxbrew/homebrew # {{{
-export HOMEBREW_INSTALL_FROM_API=1
-export HOMEBREW_API_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles/api"
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
-export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 if [[ "$OSTYPE" == "linux-gnu" ]]; then # only set for Linux
   export PATH="$ACTHOME/.linuxbrew/bin":"$ACTHOME/.linuxbrew/sbin":$PATH
   export MANPATH="$ACTHOME/.linuxbrew/share/man":$MANPATH
   export INFOPATH="$ACTHOME/.linuxbrew/share/info":$INFOPATH
+  export FPATH="$ACTHOME/.linuxbrew/share/zsh/site-functions":$FPATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then # only set for MAC
   export PATH="$(brew --prefix coreutils)/libexec/gnubin":$PATH
 fi
@@ -24,12 +20,12 @@ fi
 # variables
 [[ -f ~/.linuxbrew/bin/vim ]] && VIM=~/.linuxbrew/bin/vim  || VIM=vim
 export LANG=en_US.UTF-8
-export EDITOR_CH="$VIM -u $ACTHOME/.dotfile/vim/vimrc"
-export EDITOR="$VIM -u $ACTHOME/.dotfile/vim/vimrc_yhk"
+export DOTFILEDIR=$ACTHOME/.dotfile
+export EDITOR_CH="$VIM -u $DOTFILEDIR/vim/vimrc"
+export EDITOR="$VIM -u $DOTFILEDIR/vim/vimrc_yhk"
 export GIT_EDITOR=${EDITOR}
 export TERM="xterm-256color"
 export PAGER="less"
-export DOTFILEDIR=$ACTHOME/.dotfile
 
 # aliases
 alias ec=$EDITOR_CH
@@ -127,3 +123,4 @@ zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 #
 #EOT
 #echo -ne "\033[m"
+
