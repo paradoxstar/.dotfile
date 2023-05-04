@@ -1,0 +1,13 @@
+OLD_PYTHON=`which python`
+VENV_PATH=`pwd`/.venv/
+
+if [ ! -d "$VENV_PATH" ]; then
+   virtualenv $VENV_PATH
+fi
+
+source $VENV_PATH/bin/activate
+NEW_PYTHON=`which python`
+
+echo "Virtualenv changed"
+echo "  from $OLD_PYTHON"
+echo "  to   $NEW_PYTHON"
