@@ -6,6 +6,8 @@ if [ ! -d "$VENV_PATH" ]; then
 fi
 
 source $VENV_PATH/bin/activate
+export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
+
 NEW_PYTHON=`which python`
 
 echo "Virtualenv changed"
