@@ -419,6 +419,11 @@ nnoremap <silent> [unite]o :<C-u>Unite -toggle -auto-resize -buffer-name=outline
 nnoremap <silent> [unite]c :<C-u>Unite -default-action=execute -buffer-name=commands  history/command<CR>
 "=========================== PART  END =========================================
 
+"=================================================
+" 	Unicode-vim 插件
+"=================================================
+Plugin 'chrisbra/unicode.vim'
+"=========================== PART  END =========================================
 
 call vundle#end()            " required
 " ensure ftdetect et al work by including this after the Vundle stuff
