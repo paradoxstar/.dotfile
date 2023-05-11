@@ -4,3 +4,12 @@ export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bot
 export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git"
 export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git"
 export HOMEBREW_FORCE_BREWED_CURL=1
+
+
+export PATH=/data/yhk/.linuxbrew/opt/binutils/bin:$PATH
+export LDFLAGS="-L/data/yhk/.linuxbrew/opt/binutils/lib"
+export CPPFLAGS="-I/data/yhk/.linuxbrew/opt/binutils/include"
+
+
+export PATH="/data/yhk/.linuxbrew/opt/glibc/bin:$PATH"
+export PATH="/data/yhk/.linuxbrew/opt/glibc/sbin:$PATH"
