@@ -8,10 +8,11 @@ export ACTHOME=$HOME
 
 # setup PATH for linuxbrew/homebrew # {{{
 if [[ "$OSTYPE" == "linux-gnu" ]]; then # only set for Linux
-  export PATH="$ACTHOME/.linuxbrew/bin":"$ACTHOME/.linuxbrew/sbin":$PATH
-  export MANPATH="$ACTHOME/.linuxbrew/share/man":$MANPATH
-  export INFOPATH="$ACTHOME/.linuxbrew/share/info":$INFOPATH
-  export FPATH="$ACTHOME/.linuxbrew/share/zsh/site-functions":$FPATH
+  export HOMEBREW_DIR=$ACTHOME/.linuxbrew
+  export PATH="$HOMEBREW_DIR/bin":"$HOMEBREW_DIR/sbin":$PATH
+  export MANPATH="$HOMEBREW_DIR/share/man":$MANPATH
+  export INFOPATH="$HOMEBREW_DIR/share/info":$INFOPATH
+  export FPATH="$HOMEBREW_DIR/share/zsh/site-functions":$FPATH
 elif [[ "$OSTYPE" == "darwin"* ]]; then # only set for MAC
   export PATH="$(brew --prefix coreutils)/libexec/gnubin":$PATH
 fi
