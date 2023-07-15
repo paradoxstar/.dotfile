@@ -6,12 +6,12 @@ export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebr
 export HOMEBREW_FORCE_BREWED_CURL=1
 
 
-# set homebrew toolchains
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-  export PATH=$HOMEBREW_DIR/opt/binutils/bin:$PATH
-  export LDFLAGS="-L$HOMEBREW_DIR/opt/binutils/lib"
-  export CPPFLAGS="-I$HOMEBREW_DIR/opt/binutils/include"
-  
-  export PATH=$HOMEBREW_DIR/opt/glibc/bin:$PATH
-  export PATH=$HOMEBREW_DIR/opt/glibc/sbin:$PATH
-fi
+## set homebrew toolchains
+#if [[ "$OSTYPE" == "linux-gnu" ]]; then
+#  export PATH=$HOMEBREW_DIR/opt/binutils/bin:$PATH
+#  export LDFLAGS="-L$HOMEBREW_DIR/opt/binutils/lib"
+#  export CPPFLAGS="-I$HOMEBREW_DIR/opt/binutils/include"
+#  
+#  export PATH=$HOMEBREW_DIR/opt/glibc/bin:$PATH
+#  export PATH=$HOMEBREW_DIR/opt/glibc/sbin:$PATH
+#fi
