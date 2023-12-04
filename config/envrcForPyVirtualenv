@@ -1,15 +1,21 @@
+export PROJECT_ROOT=`pwd`
+echo "==========================================================="
+echo "Welcome to Project:" $(basename "$PROJECT_ROOT")
+echo ""
+
 OLD_PYTHON=`which python`
+
 VENV_PATH=`pwd`/.venv/
-
 if [ ! -d "$VENV_PATH" ]; then
-   virtualenv $VENV_PATH
+   python -m venv $VENV_PATH
 fi
-
 source $VENV_PATH/bin/activate
 export LD_LIBRARY_PATH=$CONDA_PREFIX/lib:$LD_LIBRARY_PATH
 
 NEW_PYTHON=`which python`
 
-echo "Virtualenv changed"
+echo "Changing Python Virtual Environment:"
 echo "  from $OLD_PYTHON"
 echo "  to   $NEW_PYTHON"
+echo "Done."
+echo "==========================================================="
