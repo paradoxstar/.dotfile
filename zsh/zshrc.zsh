@@ -70,6 +70,7 @@ antigen bundles << EOBUNDLES
   colored-man-pages
   zsh-users/zsh-completions
   zsh-users/zsh-syntax-highlighting
+  conda-incubator/conda-zsh-completion
   derekdreery/zsh-ag
   history-substring-search
   joel-porquet/zsh-dircolors-solarized
